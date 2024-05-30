@@ -9,11 +9,8 @@ import (
 )
 
 func main() {
-	if len(os.Args) > 2 { // Checking if there are too many arguments has been entered
-		fmt.Println("You've entered too many arguments, enter only 1 argument after main.go")
-		return
-	} else if len(os.Args) < 2 { // Checking if there are no arguments enterd
-		fmt.Println("You've entered less arguments, enter only 1 argument after main.go")
+	if len(os.Args) > 3 || len(os.Args) < 2{
+		fmt.Println("Only two or one arguments are accepted after main.go.\nUsage1: go run . [STRING] [BANNER]\nEX1: go run . something standard\nUsage2: go run . [STRING]\nEX2: go run . something")
 		return
 	}
 
