@@ -10,12 +10,11 @@ import (
 
 func main() {
 	if len(os.Args) > 3 || len(os.Args) < 2{
-		fmt.Println("Only two or one arguments are accepted after main.go.\nUsage1: go run . [STRING] [BANNER]\nEX1: go run . something standard\nUsage2: go run . [STRING]\nEX2: go run . something")
+		fmt.Println("Only one or two arguments are accepted after main.go.\nUsage1: go run . [STRING] [BANNER]\nEX1: go run . something standard\nUsage2: go run . [STRING]\nEX2: go run . something")
 		return
 	}
 
 	StringInput := os.Args[1] // Reading the argument entered
-	// fmt.Println(input)
 
 	// handling a case where an empty string or \n only has been entered as argument
 	if StringInput == "" {
@@ -67,6 +66,5 @@ func main() {
 		return
 	}
 
-	// functions.AsciiArt(input, string(file))
 	fmt.Print(functions.AsciiArt(StringInput, fileLine))
 }
