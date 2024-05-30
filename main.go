@@ -14,28 +14,35 @@ func main() {
 		return
 	}
 
-	input := os.Args[1] // Reading the argument entered
+	StringInput := os.Args[1] // Reading the argument entered
 	// fmt.Println(input)
 
 	// handling a case where an empty string or \n only has been entered as argument
-	if input == "" {
+	if StringInput == "" {
 		return
-	} else if input == "\\n" {
-		fmt.Println()
-		return
+	} 
+
+	BannerFile := "standard.txt"
+
+	if len(os.Args) == 3{
+		banner := strings.Replace(os.Args[2], ".txt", "", -1)
+		if !(banner == "standard" || banner == "shadow" || banner == "thinkertoy"){
+			fmt.Println("This banner name", os.Args[2],"is incorrect, the only acceptable banner names are standard, shadow or thinkertoy")
+			return
+		}
+		BannerFile = banner + ".txt"
 	}
-	inputFile := "standard.txt"
 
 	// reading standard.txt and handling it's error
-	file, err := os.ReadFile(inputFile)
+	file, err := os.ReadFile(BannerFile)
 	if err != nil {
-		fmt.Println("Error openning", inputFile, err)
+		fmt.Println("Error openning", BannerFile, err)
 		return
 	}
 	var fileLine []string
 
 	// slicing the file into an array of string based on new line
-	if inputFile == "thinkertoy.txt" {
+	if BannerFile == "thinkertoy.txt" {
 		fileLine = strings.Split(string(file), "\r\n")
 	} else {
 		fileLine = strings.Split(string(file), "\n")
@@ -43,7 +50,7 @@ func main() {
 
 	// adding link to the file in the link variable
 	link := ""
-	switch inputFile {
+	switch BannerFile {
 	case "standard.txt":
 		link = "https://learn.zone01kisumu.ke/git/root/public/src/branch/master/subjects/ascii-art/standard.txt"
 	case "shadow.txt":
@@ -51,15 +58,15 @@ func main() {
 	case "thinkertoy.txt":
 		link = "https://learn.zone01kisumu.ke/git/root/public/src/branch/master/subjects/ascii-art/thinkertoy.txt"
 	default:
-		fmt.Println("The file", inputFile, "is not valid for this program")
+		fmt.Println("The file", BannerFile, "is not valid for this program")
 		return
 	}
 
 	if len(fileLine) != 856 {
-		fmt.Println("The file", inputFile, "has been tampered with, please use the version from ", link, "!!!")
+		fmt.Println("The file", BannerFile, "has been tampered with, please use the version from ", link, "!!!")
 		return
 	}
 
 	// functions.AsciiArt(input, string(file))
-	fmt.Print(functions.AsciiArt(input, fileLine))
+	fmt.Print(functions.AsciiArt(StringInput, fileLine))
 }
