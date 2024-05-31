@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	if len(os.Args) > 3 || len(os.Args) < 2{
+	if len(os.Args) > 3 || len(os.Args) < 2 {
 		fmt.Println("Only one or two arguments are accepted after main.go.\nUsage1: go run . [STRING] [BANNER]\nEX1: go run . something standard\nUsage2: go run . [STRING]\nEX2: go run . something")
 		return
 	}
@@ -19,14 +19,14 @@ func main() {
 	// handling a case where an empty string or \n only has been entered as argument
 	if StringInput == "" {
 		return
-	} 
+	}
 
 	BannerFile := "standard.txt"
 
-	if len(os.Args) == 3{
+	if len(os.Args) == 3 {
 		banner := strings.Replace(os.Args[2], ".txt", "", -1)
-		if !(banner == "standard" || banner == "shadow" || banner == "thinkertoy"){
-			fmt.Println("This banner name", os.Args[2],"is incorrect, the only acceptable banner names are standard, shadow or thinkertoy")
+		if !(banner == "standard" || banner == "shadow" || banner == "thinkertoy") {
+			fmt.Println("This banner name", os.Args[2], "is incorrect, the only acceptable banner names are standard, shadow or thinkertoy")
 			return
 		}
 		BannerFile = banner + ".txt"
