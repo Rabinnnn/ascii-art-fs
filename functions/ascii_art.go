@@ -5,18 +5,18 @@ import (
 	"strings"
 )
 
-func AsciiArt(input string, fileLine []string) string {
+func AsciiArt(stringInput string, fileLine []string) string {
 	result := ""
 
-	// replacing every instance of new line with the symbol \\n
-	input = strings.Replace(input, "\n", "\\n", -1)
+	// replacing every instance of new line with the newline character (\n)
+	stringInput = strings.Replace(stringInput, "\n", "\\n", -1)
 
-	if !validSentence(input) {
+	if !ValidSentence(stringInput) {
 		return ""
 	}
 
-	// slicing the input base on the presence of the string "\n"
-	words := strings.Split(input, "\\n")
+	// slicing the input based on the presence of the string "\n"
+	words := strings.Split(stringInput, "\\n")
 
 	empty := EmptyArray(words)
 	if empty != "false" {
@@ -31,7 +31,7 @@ func AsciiArt(input string, fileLine []string) string {
 			for i := 0; i < 8; i++ {
 				for j := 0; j < len(word); j++ {
 					start := (int(word[j]-' ') * 9) + 1 // calculating the begining of a character based on data from standard.txt
-					// result += strconv.Itoa(i)
+
 					result += fileLine[start+i]
 				}
 				result += "\n"
@@ -41,7 +41,7 @@ func AsciiArt(input string, fileLine []string) string {
 	return result
 }
 
-func validSentence(word string) bool {
+func ValidSentence(word string) bool {
 	for _, letter := range word {
 		if !(letter >= ' ' && letter <= '~') {
 			fmt.Println("Error, character", string(letter), "is an invalid character!!!!")
