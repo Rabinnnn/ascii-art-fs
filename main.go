@@ -14,10 +14,9 @@ func main() {
 		return
 	}
 
-	StringInput := os.Args[1] // Reading the argument entered
+	stringInput := os.Args[1] // Reading the string argument entered
 
-	// handling a case where an empty string or \n only has been entered as argument
-	if StringInput == "" {
+	if stringInput == "" {
 		return
 	}
 
@@ -32,7 +31,7 @@ func main() {
 		BannerFile = banner + ".txt"
 	}
 
-	// reading standard.txt and handling it's error
+	// read banner file specified
 	file, err := os.ReadFile(BannerFile)
 	if err != nil {
 		fmt.Println("Error openning", BannerFile, err)
@@ -40,14 +39,13 @@ func main() {
 	}
 	var fileLine []string
 
-	// slicing the file into an array of string based on new line
 	if BannerFile == "thinkertoy.txt" {
 		fileLine = strings.Split(string(file), "\r\n")
 	} else {
 		fileLine = strings.Split(string(file), "\n")
 	}
 
-	// adding link to the file in the link variable
+	// provide link where user can download original file
 	link := ""
 	switch BannerFile {
 	case "standard.txt":
@@ -66,5 +64,5 @@ func main() {
 		return
 	}
 
-	fmt.Print(functions.AsciiArt(StringInput, fileLine))
+	fmt.Print(functions.AsciiArt(stringInput, fileLine))
 }

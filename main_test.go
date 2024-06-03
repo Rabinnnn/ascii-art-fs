@@ -8,8 +8,8 @@ import (
 	"testing"
 )
 
-func TestAsciiArtStandard(t *testing.T){
-	//reading standard.txt and handling it's error
+func TestAsciiArtStandard(t *testing.T) {
+
 	inputFile := "standard.txt"
 	file, err := os.ReadFile(inputFile)
 	if err != nil {
@@ -50,8 +50,8 @@ func TestAsciiArtStandard(t *testing.T){
 
 }
 
-func TestAsciiArtShadow(t *testing.T){
-	//reading standard.txt and handling it's error
+func TestAsciiArtShadow(t *testing.T) {
+
 	inputFile := "shadow.txt"
 	file, err := os.ReadFile(inputFile)
 	if err != nil {
@@ -90,8 +90,8 @@ func TestAsciiArtShadow(t *testing.T){
 
 }
 
-func TestAsciiArtThinkertoy(t *testing.T){
-	//reading standard.txt and handling it's error
+func TestAsciiArtThinkertoy(t *testing.T) {
+
 	inputFile := "thinkertoy.txt"
 	file, err := os.ReadFile(inputFile)
 	if err != nil {
