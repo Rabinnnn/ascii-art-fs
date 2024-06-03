@@ -10,7 +10,7 @@ import (
 
 func main() {
 	if len(os.Args) > 3 || len(os.Args) < 2 {
-		fmt.Println("Only one or two arguments are accepted after main.go.\nUsage1: go run . [STRING] [BANNER]\nEX1: go run . something standard\nUsage2: go run . [STRING]\nEX2: go run . something")
+		fmt.Println("Usage: go run . [STRING] [BANNER]\nEX: go run . something standard")
 		return
 	}
 
@@ -23,11 +23,7 @@ func main() {
 	BannerFile := "standard.txt"
 
 	if len(os.Args) == 3 {
-		banner := strings.Replace(os.Args[2], ".txt", "", -1)
-		if !(banner == "standard" || banner == "shadow" || banner == "thinkertoy") {
-			fmt.Println("This banner name", os.Args[2], "is incorrect, the only acceptable banner names are standard, shadow or thinkertoy")
-			return
-		}
+		banner := strings.Replace(os.Args[2], ".txt", "", 1)
 		BannerFile = banner + ".txt"
 	}
 
@@ -37,15 +33,11 @@ func main() {
 		fmt.Println("Error openning", BannerFile, err)
 		return
 	}
+	file = []byte(strings.Replace(string(file), "\r\n", "\n", -1))
 	var fileLine []string
 
-	if BannerFile == "thinkertoy.txt" {
-		fileLine = strings.Split(string(file), "\r\n")
-	} else {
-		fileLine = strings.Split(string(file), "\n")
-	}
+	fileLine = strings.Split(string(file), "\n")
 
-	// provide link where user can download original file
 	link := ""
 	switch BannerFile {
 	case "standard.txt":
@@ -54,13 +46,10 @@ func main() {
 		link = "https://learn.zone01kisumu.ke/git/root/public/src/branch/master/subjects/ascii-art/shadow.txt"
 	case "thinkertoy.txt":
 		link = "https://learn.zone01kisumu.ke/git/root/public/src/branch/master/subjects/ascii-art/thinkertoy.txt"
-	default:
-		fmt.Println("The file", BannerFile, "is not valid for this program")
-		return
 	}
 
 	if len(fileLine) != 856 {
-		fmt.Println("The file", BannerFile, "has been tampered with, please use the version from ", link, "!!!")
+		fmt.Println("The file", BannerFile, "is not correctly formated, please use the correct version", link, "!!!")
 		return
 	}
 
